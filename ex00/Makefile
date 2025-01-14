@@ -13,3 +13,7 @@ $(NAME): $(SRC)
 
 clean:
 	@rm $(NAME)
+
+re: clean all
+
+.PHONY: re clean all
