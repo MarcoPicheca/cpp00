@@ -31,9 +31,10 @@ int main()
 				phonebook.tmp_lst, phonebook.tmp_nick, phonebook.tmp_secret, i);
 			i++;
 		}
-		// else if (command.compare("SEARCH") == 0)
-		// 	// add contact
-		// 	;
+		else if (command.compare("SEARCH") == 0)
+		{
+			phonebook.call_display();
+		}
 		else if (command.compare("EXIT") == 0)
 			exit(0);
 		else
