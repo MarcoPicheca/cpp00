@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 20:05:22 by mapichec          #+#    #+#             */
-/*   Updated: 2025/02/05 11:13:41 by marco            ###   ########.fr       */
+/*   Updated: 2025/02/06 17:55:30 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,90 @@ class Contact
 			 * quando raggiunge il limite di otto.
 			 *
 			*/ 
-			std::cout << i + 1 << " | ";
-			if (this->name.length() > 10)
+			std::cout << i + 1 << " |";
+			int	cont = 0;
+			int	shift = 0;
+			int	col = 1;
+			while (col < 4)
 			{
-				int i = 0;
-				std::cout.
+				if (cont == 0)
+				{
+					std::cout << ' ';
+					cont++;
+				}
+				while (cont < 12)
+				{
+					if (col == 1)
+					{
+						if (shift < 10 && shift < (int)this->name.length())
+							std::cout << this->name.at(shift++);
+						else if (shift == 10)
+						{
+							std::cout << '.';
+							shift = 0;
+							break;
+						}
+						else if (shift == (int)this->name.length() && shift < 11)
+						{
+							while(shift < 11)
+							{
+								cont++;
+								shift++;
+								std::cout << ' ';
+							}
+							break;
+						}
+					}
+					if (col == 2)
+					{
+						if (shift < 10 && shift < (int)this->last_name.length())
+							std::cout << this->last_name.at(shift++);
+						else if (shift == 10)
+						{
+							std::cout << '.';
+							shift = 0;
+							break;
+						}
+						else if (shift == (int)this->last_name.length() && shift < 11)
+						{
+							while(shift < 11)
+							{
+								cont++;
+								shift++;
+								std::cout << ' ';
+							}
+							break;														
+						}
+					}
+					if (col == 3)
+					{
+						if (shift < 10 && shift < (int)this->nickname.length())
+							std::cout << this->nickname.at(shift++);
+						else if (shift == 10)
+						{
+							std::cout << '.';
+							shift = 0;
+							break;
+						}
+						else if (shift == (int)this->nickname.length() && shift < 11)
+						{
+							while(shift < 11)
+							{
+								cont++;
+								shift++;
+								std::cout << ' ';
+							}
+							break;														
+						}
+					}
+					cont++;
+				}
+				std::cout << " |";
+				cont = 0;
+				shift = 0;
+				col++;
 			}
-			else
-				std::cout << this->name << " | ";
-			std::cout << this->last_name << " | ";
-			std::cout << this->nickname << " | " << std::endl;
+			std::cout << std::endl;
 		}
 		
 		//TODO funzione per il search con regole per la lista settata
