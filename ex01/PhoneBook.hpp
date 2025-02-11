@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 20:05:22 by mapichec          #+#    #+#             */
-/*   Updated: 2025/02/06 17:55:30 by marco            ###   ########.fr       */
+/*   Updated: 2025/02/11 12:25:47 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define PHONE_BOOK_H
 # include <iostream>
 # include <cstring>
+# include <unistd.h>
+# include <string.h>
+# include <sstream>
 
 class Contact
 {
@@ -23,27 +26,25 @@ class Contact
 			std::string lst_nm, std::string nk_nm, std::string scrt, 
 			int num_cont)
 		{
-			this->name.replace(0, nm.length(), nm);
-			this->number.replace(0, num.length(), num);
-			this->last_name.replace(0, lst_nm.length(), lst_nm);
-			this->nickname.replace(0, nk_nm.length(), nk_nm);
-			this->secret.replace(0, scrt.length(), scrt);
+			this->name.replace(0, nm.size(), nm);
+			this->number.replace(0, num.size(), num);
+			this->last_name.replace(0, lst_nm.size(), lst_nm);
+			this->nickname.replace(0, nk_nm.size(), nk_nm);
+			this->secret.replace(0, scrt.size(), scrt);
 			this->cont_old = num_cont;
 		};
 		void	display(int i)
 		{
 			/**
-			 * da capire se esiste una maniera per troncare
-			 * gli argomenti mandati a cout senza allocare
-			 * e senza dover scorrere carattere per carattere.
 			 * 
-			 * Abbiamo problemi con l'allineamento, per cui
-			 * pensavamo di creare un limite max (12 chars) di char presenti
-			 * in una colonna con una minimo di spaziatura per
-			 * rendere più friendly le visual.
+			 * //TODO
 			 * 
-			 * ADD funzione e sostituisce i vari contatti
-			 * quando raggiunge il limite di otto.
+			 * display ancora non del tutto funzionante
+			 * ma ancora non si è cpaito come mai in alcuni
+			 * casi faccia le colonne da 12 invece che da 13
+			 * per cui: 
+			 * - da capire i casi in cui lo fa e risolvere
+			 * 
 			 *
 			*/ 
 			std::cout << i + 1 << " |";
