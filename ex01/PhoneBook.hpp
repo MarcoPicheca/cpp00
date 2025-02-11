@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 20:05:22 by mapichec          #+#    #+#             */
-/*   Updated: 2025/02/11 12:25:47 by marco            ###   ########.fr       */
+/*   Updated: 2025/02/11 19:51:13 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,22 @@ class Contact
 			std::string lst_nm, std::string nk_nm, std::string scrt, 
 			int num_cont)
 		{
+			int	pos_ws = 0;
+			pos_ws = nm.find_first_not_of(" \t");
+			if (pos_ws)
+				nm.erase(0, pos_ws);
+			pos_ws = num.find_first_not_of(" \t");
+			if (pos_ws)
+				num.erase(0, pos_ws);
+			pos_ws = lst_nm.find_first_not_of(" \t");
+			if (pos_ws)
+				lst_nm.erase(0, pos_ws);
+			pos_ws = nk_nm.find_first_not_of(" \t");
+			if (pos_ws)
+				nk_nm.erase(0, pos_ws);
+			pos_ws = scrt.find_first_not_of(" \t");
+			if (pos_ws)
+				scrt.erase(0, pos_ws);
 			this->name.replace(0, nm.size(), nm);
 			this->number.replace(0, num.size(), num);
 			this->last_name.replace(0, lst_nm.size(), lst_nm);
@@ -33,6 +49,8 @@ class Contact
 			this->secret.replace(0, scrt.size(), scrt);
 			this->cont_old = num_cont;
 		};
+
+		// Shows the phonebook contacts
 		void	display(int i)
 		{
 			/**
@@ -45,6 +63,8 @@ class Contact
 			 * per cui: 
 			 * - da capire i casi in cui lo fa e risolvere
 			 * 
+			 * ERRORE AL MOMENTO NON RIPRODUCIBILE
+			 * 
 			 *
 			*/ 
 			std::cout << i + 1 << " |";
@@ -55,7 +75,7 @@ class Contact
 			{
 				if (cont == 0)
 				{
-					std::cout << ' ';
+					std::cout << ' ' << std::flush;
 					cont++;
 				}
 				while (cont < 12)
@@ -63,10 +83,10 @@ class Contact
 					if (col == 1)
 					{
 						if (shift < 10 && shift < (int)this->name.length())
-							std::cout << this->name.at(shift++);
+							std::cout << this->name.at(shift++) << std::flush;
 						else if (shift == 10)
 						{
-							std::cout << '.';
+							std::cout << '.' << std::flush;
 							shift = 0;
 							break;
 						}
@@ -76,7 +96,7 @@ class Contact
 							{
 								cont++;
 								shift++;
-								std::cout << ' ';
+								std::cout << ' ' << std::flush;
 							}
 							break;
 						}
@@ -84,10 +104,10 @@ class Contact
 					if (col == 2)
 					{
 						if (shift < 10 && shift < (int)this->last_name.length())
-							std::cout << this->last_name.at(shift++);
+							std::cout << this->last_name.at(shift++) << std::flush;
 						else if (shift == 10)
 						{
-							std::cout << '.';
+							std::cout << '.' << std::flush;
 							shift = 0;
 							break;
 						}
@@ -97,7 +117,7 @@ class Contact
 							{
 								cont++;
 								shift++;
-								std::cout << ' ';
+								std::cout << ' ' << std::flush;
 							}
 							break;														
 						}
@@ -105,10 +125,10 @@ class Contact
 					if (col == 3)
 					{
 						if (shift < 10 && shift < (int)this->nickname.length())
-							std::cout << this->nickname.at(shift++);
+							std::cout << this->nickname.at(shift++) << std::flush;
 						else if (shift == 10)
 						{
-							std::cout << '.';
+							std::cout << '.' << std::flush;
 							shift = 0;
 							break;
 						}
@@ -118,14 +138,14 @@ class Contact
 							{
 								cont++;
 								shift++;
-								std::cout << ' ';
+								std::cout << ' ' << std::flush;
 							}
 							break;														
 						}
 					}
 					cont++;
 				}
-				std::cout << " |";
+				std::cout << " |" << std::flush;
 				cont = 0;
 				shift = 0;
 				col++;
@@ -133,7 +153,16 @@ class Contact
 			std::cout << std::endl;
 		}
 		
-		//TODO funzione per il search con regole per la lista settata
+		// displays the selected contact
+		void	display_one(int i)
+		{
+			std::cout << "NAME: " << this->name << std::endl;
+			std::cout << "PHONE NUMBER: " << this->number << std::endl;
+			std::cout << "LAST NAME: " << this->last_name << std::endl;
+			std::cout << "NICKNAME: " << this->nickname << std::endl;
+			std::cout << "DARKEST SECRET: " << this->secret << std::endl;
+		}
+
 	private:
 		std::string name;
 		std::string nickname;
@@ -171,11 +200,23 @@ class PhoneBook
 			for (int i = 0; i < 8; i++)
 			{
 				tmp_c = c_arr + i;
-				tmp_c->display(i);				
+				tmp_c->display(i);
 			}
+			
+			int pos_ws = tmp_num.find_first_not_of(" \t");
+			if (pos_ws)
+				tmp_num.erase(0, pos_ws);
+			while (tmp_num.find_first_of("12345678") == std::string::npos)
+			{
+				std::cout << "Select a contact (just one number beetween the ones in the Phone Book index): ";
+				std::cin.ignore();
+				std::getline(std::cin, tmp_num);
+				if (tmp_num.find_first_not_of("12345678") || tmp_num.length() > 1)
+					tmp_num.clear();
+			}
+			// TODO da aggiungere la parte di display
 			std::cout << std::endl;
 		}
-		// funzioni per modificare dal main
 };
 
 #endif
