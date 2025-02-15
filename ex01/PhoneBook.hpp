@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mapichec <mapichec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 20:05:22 by mapichec          #+#    #+#             */
-/*   Updated: 2025/02/11 19:51:13 by marco            ###   ########.fr       */
+/*   Updated: 2025/02/15 17:19:51 by mapichec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 class Contact
 {
 	public:
-	// funzioni per modificare da phonebook
+		// modifies contacts in the phoneBook
 		void add_cont(std::string nm, std::string num,
 			std::string lst_nm, std::string nk_nm, std::string scrt, 
 			int num_cont)
@@ -53,20 +53,6 @@ class Contact
 		// Shows the phonebook contacts
 		void	display(int i)
 		{
-			/**
-			 * 
-			 * //TODO
-			 * 
-			 * display ancora non del tutto funzionante
-			 * ma ancora non si è cpaito come mai in alcuni
-			 * casi faccia le colonne da 12 invece che da 13
-			 * per cui: 
-			 * - da capire i casi in cui lo fa e risolvere
-			 * 
-			 * ERRORE AL MOMENTO NON RIPRODUCIBILE
-			 * 
-			 *
-			*/ 
 			std::cout << i + 1 << " |";
 			int	cont = 0;
 			int	shift = 0;
@@ -170,26 +156,13 @@ class Contact
 		std::string number;
 		std::string secret;
 		int cont_old;
-	/** 
-	 * utile per visual
-	 * void get_contact()
-	 * {
-	 * 	std::cout << this->name << std::endl;
-	 * 	std::cout << this->number << std::endl;
-	 * 	std::cout << this->last_name << std::endl;
-	 * 	std::cout << this->nickname << std::endl;
-	 * 	std::cout << this->secret << std::endl;
-	 * 	std::cout << this->cont_old << std::endl;
-	 * }
-	 * 
-	 * */ 
 };
 
 class PhoneBook
 {
 	public:
-		Contact c_arr[8];
-		Contact *tmp_c;
+		Contact contactArr[8];
+		Contact *tmpContact;
 		std::string tmp_name;
 		std::string tmp_num;
 		std::string tmp_lst;
@@ -199,8 +172,8 @@ class PhoneBook
 		{
 			for (int i = 0; i < 8; i++)
 			{
-				tmp_c = c_arr + i;
-				tmp_c->display(i);
+				tmpContact = contactArr + i;
+				tmpContact->display(i);
 			}
 			
 			int pos_ws = tmp_num.find_first_not_of(" \t");
@@ -214,7 +187,6 @@ class PhoneBook
 				if (tmp_num.find_first_not_of("12345678") || tmp_num.length() > 1)
 					tmp_num.clear();
 			}
-			// TODO da aggiungere la parte di display
 			std::cout << std::endl;
 		}
 };
