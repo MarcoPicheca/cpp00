@@ -1,10 +1,10 @@
 NAME = phonebook
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 CC = c++
 
-SRC = PhoneBook.cpp
+SRC = PhoneBook.cpp Contact.cpp
 
 all: $(NAME)
 
@@ -16,6 +16,8 @@ clean:
 	@echo "Cleaning..."
 	@rm $(NAME)
 
+fclean: clean
+
 re: clean all
 
-.PHONY: re clean all
+.PHONY: re clean all fclean

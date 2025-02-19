@@ -6,7 +6,7 @@
 /*   By: mapichec <mapichec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:09 by mapichec          #+#    #+#             */
-/*   Updated: 2025/01/11 17:14:15 by mapichec         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:21:38 by mapichec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 {
 	int	i = 1;
 	std::string arg;
-	int j = 0;
+	unsigned long j = 0;
 
 	if (argc == 1)
 	{
@@ -26,12 +26,12 @@ int main(int argc, char **argv)
 	while (i < argc && argv[i])
 	{
 		arg = (std::string)argv[i];
-		j = -1;
-		while ((std::basic_string<char>::size_type)++j < arg.length())
+		j = 0;
+		while (j < arg.length())
 		{
 			if (argv[i][j] >= 'a' && argv[i][j] <= 'z')
 				argv[i][j] = std::toupper(argv[i][j]);
-				// argv[i][j] -= 32;
+			j++;
 		}
 		i++;
 	}    

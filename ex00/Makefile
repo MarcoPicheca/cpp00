@@ -14,6 +14,8 @@ $(NAME): $(SRC)
 clean:
 	@rm $(NAME)
 
+fclean: clean
+
 re: clean all
 
-.PHONY: re clean all
+.PHONY: re clean all fclean

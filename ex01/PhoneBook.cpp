@@ -1,6 +1,77 @@
 #include "./PhoneBook.hpp"
 
-
+void PhoneBook::call_display()
+{
+	for (int i = 0; i < 8; i++)
+	{
+		tmpContact = contactArr + i;
+		tmpContact->display(i);
+	}
+	int pos_ws = tmp_num.find_first_not_of(" \t");
+	if (pos_ws)
+		tmp_num.erase(0, pos_ws);
+	while (tmp_num.find_first_of("012345678") == std::string::npos)
+	{
+		std::cout << "Select a contact (just one number beetween the ones in the Phone Book index): ";
+		std::getline(std::cin, tmp_num);
+		if (tmp_num.find_first_not_of("012345678") != std::string::npos || tmp_num.length() > 1)
+			tmp_num.clear();
+	}
+	if (tmp_num.compare("0") == 0)
+	{
+		tmp_num.clear();
+		return ;
+	}
+	else if (tmp_num.compare("1") == 0)
+	{
+		contactArr[0].display_one();
+		tmp_num.clear();
+		return ;
+	}
+	else if (tmp_num.compare("2") == 0)
+	{
+		contactArr[1].display_one();
+		tmp_num.clear();
+		return ;
+	}
+	else if (tmp_num.compare("3") == 0)
+	{
+		contactArr[2].display_one();
+		tmp_num.clear();
+		return ;
+	}
+	else if (tmp_num.compare("4") == 0)
+	{
+		contactArr[3].display_one();
+		tmp_num.clear();
+		return ;
+	}
+	else if (tmp_num.compare("5") == 0)
+	{
+		contactArr[4].display_one();
+		tmp_num.clear();
+		return ;
+	}
+	if (tmp_num.compare("6") == 0)
+	{
+		contactArr[5].display_one();
+		tmp_num.clear();
+		return ;
+	}
+	if (tmp_num.compare("7") == 0)
+	{
+		contactArr[6].display_one();
+		tmp_num.clear();
+		return ;
+	}
+	if (tmp_num.compare("8") == 0)
+	{
+		contactArr[7].display_one();
+		tmp_num.clear();
+		return ;
+	}
+	std::cout << std::endl;
+}
 
 int main()
 {
@@ -83,11 +154,9 @@ int main()
 			i++;
 		}
 		else if (command.compare("SEARCH") == 0)
-		{
 			phoneBook.call_display();
-		}
 		else if (command.compare("EXIT") == 0)
-			exit(0);
+			return (0);
 		else if (command.empty() || command.compare("\n"))
 			std::cout << "READ AGAIN" << std::endl;
 	}
