@@ -20,7 +20,17 @@ void Contact::add_cont(std::string nm, std::string num,
 	pos_ws = scrt.find_first_not_of(" \t");
 	if (pos_ws)
 		scrt.erase(0, pos_ws);
-	this->name.replace(0, nm.size(), nm);
+	if (!this->name.empty())
+		this->name.clear();
+	if (!this->number.empty())
+		this->number.clear();
+	if (!this->last_name.empty())
+		this->last_name.clear();
+	if (!this->nickname.empty())
+		this->nickname.clear();
+	if (!this->secret.empty())
+		this->secret.clear();
+	this->name.replace(0, nm.size(), nm);	
 	this->number.replace(0, num.size(), num);
 	this->last_name.replace(0, lst_nm.size(), lst_nm);
 	this->nickname.replace(0, nk_nm.size(), nk_nm);

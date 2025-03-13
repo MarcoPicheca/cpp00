@@ -79,6 +79,7 @@ int main()
 	std::string command;
 
 	int i = 0;
+	size_t size = -1;
 	while (1)
 	{
 		if (i == 8)
@@ -94,10 +95,22 @@ int main()
 				std::cout << "Write name: ";
 				std::getline(std::cin, phoneBook.tmp_name);
 				if (phoneBook.tmp_name.empty()
-					|| phoneBook.tmp_name.find_first_not_of(" \t") == std::string::npos)
+				|| phoneBook.tmp_name.find_first_not_of(" \t") == std::string::npos)
 				{
 					phoneBook.tmp_name.clear();
 					std::cout << "CONTACTS CAN'T HAVE EMPTY FIELDS" << std::endl;
+				}
+				size = phoneBook.tmp_name.find_first_not_of(" \t");
+				const char *s = phoneBook.tmp_name.c_str();
+				while (s[size])
+				{
+					if (s[size] < 32)
+					{
+						phoneBook.tmp_name.clear();
+						std::cout << "CONTACTS CAN'T HAVE EMPTY FIELDS" << std::endl;
+						break;
+					}
+					size++;
 				}
 			}
 			while (phoneBook.tmp_num.empty())
@@ -110,6 +123,18 @@ int main()
 					phoneBook.tmp_num.clear();
 					std::cout << "CONTACTS CAN'T HAVE EMPTY FIELDS" << std::endl;
 				}
+				size = phoneBook.tmp_num.find_first_not_of(" \t");
+				const char *s = phoneBook.tmp_num.c_str();
+				while (s[size])
+				{
+					if (s[size] < 32)
+					{
+						phoneBook.tmp_num.clear();
+						std::cout << "CONTACTS CAN'T HAVE EMPTY FIELDS" << std::endl;
+						break;
+					}
+					size++;
+				}
 			}
 			while (phoneBook.tmp_lst.empty())
 			{
@@ -120,6 +145,18 @@ int main()
 				{
 					phoneBook.tmp_lst.clear();
 					std::cout << "CONTACTS CAN'T HAVE EMPTY FIELDS" << std::endl;
+				}
+				size = phoneBook.tmp_lst.find_first_not_of(" \t");
+				const char *s = phoneBook.tmp_lst.c_str();
+				while (s[size])
+				{
+					if (s[size] < 32)
+					{
+						phoneBook.tmp_lst.clear();
+						std::cout << "CONTACTS CAN'T HAVE EMPTY FIELDS" << std::endl;
+						break;
+					}
+					size++;
 				}
 			}
 			while (phoneBook.tmp_nick.empty())
@@ -132,6 +169,18 @@ int main()
 					phoneBook.tmp_nick.clear();
 					std::cout << "CONTACTS CAN'T HAVE EMPTY FIELDS" << std::endl;
 				}
+				size = phoneBook.tmp_nick.find_first_not_of(" \t");
+				const char *s = phoneBook.tmp_nick.c_str();
+				while (s[size])
+				{
+					if (s[size] < 32)
+					{
+						phoneBook.tmp_nick.clear();
+						std::cout << "CONTACTS CAN'T HAVE EMPTY FIELDS" << std::endl;
+						break;
+					}
+					size++;
+				}
 			}
 			while (phoneBook.tmp_secret.empty())
 			{
@@ -142,6 +191,18 @@ int main()
 				{
 					phoneBook.tmp_secret.clear();
 					std::cout << "CONTACTS CAN'T HAVE EMPTY FIELDS" << std::endl;
+				}
+				size = phoneBook.tmp_secret.find_first_not_of(" \t");
+				const char *s = phoneBook.tmp_secret.c_str();
+				while (s[size])
+				{
+					if (s[size] < 32)
+					{
+						phoneBook.tmp_secret.clear();
+						std::cout << "CONTACTS CAN'T HAVE EMPTY FIELDS" << std::endl;
+						break;
+					}
+					size++;
 				}
 			}
 			phoneBook.contactArr[i].add_cont(phoneBook.tmp_name, phoneBook.tmp_num,
