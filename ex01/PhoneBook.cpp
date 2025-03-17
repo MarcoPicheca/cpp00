@@ -85,9 +85,7 @@ int main()
 		if (i == 8)
 			i = 0;
 		std::cout << "Write a command between ADD, SEARCH and EXIT (UPPERCASE REQUIRED): \0";
-		std::cin >> command;
-
-		std::cin.ignore();
+		std::getline(std::cin, command);
 		if (command.compare("ADD") == 0)
 		{
 			while (phoneBook.tmp_name.empty())
